@@ -104,6 +104,41 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  // Modal Elements
+  const modalOverlay = document.getElementById("customModal");
+  const modalIcon = document.getElementById("modalIcon");
+  const modalTitle = document.getElementById("modalTitle");
+  const modalMessage = document.getElementById("modalMessage");
+  const modalCloseBtn = document.getElementById("modalCloseBtn");
+
+  // Function to show modal
+  function showModal(type, title, message) {
+    modalTitle.textContent = title;
+    modalMessage.innerText = message; // Use innerText to preserve newlines
+
+    if (type === "warning") {
+      modalIcon.textContent = "⚠️";
+      modalTitle.style.color = "var(--accent-red)";
+    } else if (type === "success") {
+      modalIcon.textContent = "💖";
+      modalTitle.style.color = "var(--primary-pink)";
+    }
+
+    modalOverlay.classList.remove("hidden");
+  }
+
+  // Close Modal Event
+  modalCloseBtn.addEventListener("click", () => {
+    modalOverlay.classList.add("hidden");
+  });
+
+  // Close if clicked outside box
+  modalOverlay.addEventListener("click", (e) => {
+    if (e.target === modalOverlay) {
+      modalOverlay.classList.add("hidden");
+    }
+  });
+
   // 3. Form Submission (Simulated)
   orderForm.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -114,35 +149,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Basic Validation
     if (!data.bundle) {
-      alert("Harap pilih bundle terlebih dahulu!");
+      showModal("warning", "PERINGATAN!", "Pilih bundle dulu ya!");
       return;
     }
 
     if (!data.paymentMethod) {
-      alert("Harap pilih metode pembayaran!");
+      showModal("warning", "PERINGATAN!", "Pilih cara bayar dulu!");
       return;
     }
 
     // Just an alert for now
-    const sender = data.isAnonymous
-      ? `Inisial: ${data.senderInitial}`
-      : `Nama: ${data.senderName}`;
-    const total = totalPriceDisplay.textContent;
-
-    const summary = `
-        💖 PESANAN TERKIRIM! 💖
-        
-        Pengirim: ${sender}
-        Penerima: ${data.recipientName} (${data.recipientClass})
-        Bundle: ${data.bundle}
-        Metode Bayar: ${data.paymentMethod}
-        Total: ${total}
-        
-        Terima kasih sudah memesan di SWEETALS!
-        (Silahkan kirim bukti screenshot ini ke admin)
-        `;
-
-    alert(summary);
+    // Short success message as requested (max 8 words)
+    showModal(
+      "success",
+      "TERKIRIM!",
+      "Pesanan berhasil! Kirim screenshot ke admin.",
+    );
     // orderForm.reset();
   });
 });
