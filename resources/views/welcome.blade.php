@@ -18,7 +18,7 @@
     <div class="container">
       <!-- Header -->
       <header class="header-banner">
-        <img src="{{ asset('img/banner.webp') }}" alt="Sweetals Banner" class="banner-img" />
+        <img src="{{ asset('img/banner.webp') }}?v=1.1" alt="Sweetals Banner" class="banner-img" />
       </header>
 
       <form id="orderForm">
@@ -37,30 +37,17 @@
                 type="text"
                 id="senderName"
                 name="senderName"
-                placeholder="Nama Kamu"
+                placeholder="Nama"
               />
             </div>
           </div>
 
-          <div id="anonymousIdentity" class="hidden">
-            <div class="form-group">
-              <label for="senderInitial">Inisial</label>
-              <input
-                type="text"
-                id="senderInitial"
-                name="senderInitial"
-                placeholder="Contoh: A.R"
-              />
-            </div>
-            <p class="note">
-              *Identitas asli tetap dibutuhkan untuk konfirmasi (privasi
-              terjaga)
-            </p>
-          </div>
+          {{-- Anonymous Identity Hidden --}}
+
 
           <div class="form-group">
             <label for="senderContact"
-              >Nomor HP / Sosmed (Untuk Konfirmasi)</label
+              >Nomor HP / Sosial Media (Untuk Konfirmasi)</label
             >
             <input
               type="text"
@@ -81,12 +68,12 @@
               type="text"
               id="recipientName"
               name="recipientName"
-              placeholder="Nama Dia"
+              placeholder="Nama"
               required
             />
           </div>
           <div class="form-group">
-            <label for="recipientClass">Kelas / Alamat</label>
+            <label for="recipientClass">Kelas</label>
             <input
               type="text"
               id="recipientClass"
@@ -96,12 +83,12 @@
             />
           </div>
           <div class="form-group">
-            <label for="recipientContact">Sosmed / No. HP (Opsional)</label>
+            <label for="recipientContact">Nomor HP/Sosial Media (Opsional)</label>
             <input
               type="text"
               id="recipientContact"
               name="recipientContact"
-              placeholder="Jika tau"
+              placeholder="0812..."
             />
           </div>
         </section>
@@ -223,13 +210,12 @@
 
             <div id="details-transfer" class="payment-details-box">
               <h3>Transfer Bank</h3>
-              <p>BCA: 1234567890 (Abizar)</p>
-              <p>Mandiri: 0987654321 (Abizar)</p>
+              <p>BCA: 6801665141 (Anton Widodo)</p>
             </div>
 
             <div id="details-qris" class="payment-details-box">
               <h3>Scan QRIS</h3>
-              <img src="{{ asset('img/qris.jpeg') }}" alt="QRIS Code" class="qris-image" />
+              <img src="{{ asset('img/qris.jpeg') }}?v=1.1" alt="QRIS Code" class="qris-image" />
               <p style="text-align: center; font-size: 0.8rem; margin-top: 5px;">Scan untuk membayar</p>
             </div>
 

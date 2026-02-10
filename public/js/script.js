@@ -2,11 +2,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // DOM Elements
     const isAnonymousCheckbox = document.getElementById("isAnonymous");
     const senderIdentityDiv = document.getElementById("senderIdentity");
-    const anonymousIdentityDiv = document.getElementById("anonymousIdentity");
 
     // Inputs to toggle requirement
     const senderNameInput = document.getElementById("senderName");
-    const senderInitialInput = document.getElementById("senderInitial");
 
     const bundleRadios = document.querySelectorAll('input[name="bundle"]');
     const letterSection = document.getElementById("letterSection");
@@ -20,16 +18,12 @@ document.addEventListener("DOMContentLoaded", function () {
         if (this.checked) {
             // Jika Anonymous checked
             senderIdentityDiv.classList.add("hidden");
-            anonymousIdentityDiv.classList.remove("hidden");
             // Update required attributes
             senderNameInput.removeAttribute("required");
-            senderInitialInput.setAttribute("required", "true");
         } else {
             // Jika tidak Anonymous
             senderIdentityDiv.classList.remove("hidden");
-            anonymousIdentityDiv.classList.add("hidden");
             // Update required attributes
-            senderInitialInput.removeAttribute("required");
             senderNameInput.setAttribute("required", "true");
         }
     });

@@ -42,10 +42,13 @@ class OrderController extends Controller
             $proofPath = $request->file('paymentProof')->store('payment_proofs', 'public');
         }
 
+        $isAnonymous = $request->boolean('isAnonymous');
+        $senderName = $isAnonymous ? 'Anonim' : $request->senderName;
+
         Order::create([
-            'is_anonymous' => $request->boolean('isAnonymous'),
-            'sender_name' => $request->senderName,
-            'sender_initial' => $request->senderInitial,
+            'is_anonymous' => $isAnonymous,
+            'sender_name' => $senderName,
+            'sender_initial' => null,
             'sender_contact' => $request->senderContact,
             'recipient_name' => $request->recipientName,
             'recipient_class' => $request->recipientClass,
