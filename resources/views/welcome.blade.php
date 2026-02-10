@@ -10,16 +10,15 @@
       href="https://fonts.googleapis.com/css2?family=VT323&family=Nunito:wght@400;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}?v=4.0" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
   </head>
   <body>
     <div class="container">
       <!-- Header -->
-      <header class="pixel-box header">
-        <h1>SWEETALS</h1>
-        <p class="subtitle">(SWEET PETALS)</p>
-        <div class="status-badge">OPEN PO</div>
+      <!-- Header -->
+      <header class="header-banner">
+        <img src="{{ asset('img/banner.png') }}" alt="Sweetals Banner" class="banner-img" />
       </header>
 
       <form id="orderForm">
@@ -198,10 +197,12 @@
           </div>
 
           <div class="payment-terms">
-            <h3>Ketentuan Pembayaran</h3>
+            <h3>Ketentuan Pembayaran :</h3>
             <ul>
-              <li>Pembayaran wajib dilakukan di awal.</li>
-              <li>Pastikan jumlah transfer sesuai total.</li>
+              <li>Pengirim wajib melakukan pembayaran ke nomer rekening, QRIS ataupun diberikan kepada salah satu pengurus OSIS (Apabila cash).</li>
+              <li>Setiap transaksi pembayaran diharuskan melampirkan bukti baik dalam bentuk screenshot maupun foto serah terima.</li>
+              <li>Bukti pembayaran dapat dilampirkan dengan cara diunggah pada kolom di bawah.</li>
+              <li>Pesanan akan diproses apabila pihak penyedia barang sudah menerima bukti transaksi.</li>
             </ul>
           </div>
 
@@ -228,12 +229,13 @@
 
             <div id="details-qris" class="payment-details-box">
               <h3>Scan QRIS</h3>
-              <p style="text-align: center">[QR CODE PLACEHOLDER]</p>
+              <img src="{{ asset('img/qris.jpeg') }}" alt="QRIS Code" class="qris-image" />
+              <p style="text-align: center; font-size: 0.8rem; margin-top: 5px;">Scan untuk membayar</p>
             </div>
 
             <div id="details-cash" class="payment-details-box">
               <h3>Cash / COD</h3>
-              <p>Silahkan siapkan uang pas saat bertemu.</p>
+              <p>Uang bisa diserahkan secara langsung dari pihak pembeli kepada pihak penjual</p>
             </div>
           </div>
 
@@ -260,7 +262,7 @@
         </section>
 
         <button type="submit" class="pixel-btn submit-btn">
-          KIRIM PESANAN 💖
+          Send your order 💖
         </button>
       </form>
 
