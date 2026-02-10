@@ -41,7 +41,7 @@ Connect your domain (e.g., `valentine.yourdomain.com`) to this tunnel:
 
 ```bash
 # Replace 'valentine.yourdomain.com' and 'UUID' with your actual details
-cloudflared tunnel route dns valentine valentine.yourdomain.com
+cloudflared tunnel route dns valentine sweetpetals.ossaga.my.id
 ```
 
 ## 5. Run the Connection
@@ -63,7 +63,7 @@ cloudflared tunnel run --url http://localhost:8000 valentine
 
 ## 6. Access the Site
 
-Open `https://valentine.yourdomain.com` (or whatever domain you configured).
+Open `https://sweetpetals.ossaga.my.id` (or whatever domain you configured).
 It should load your local Laravel site! 🚀
 
 > **Note:** Both the `php artisan serve` and `cloudflared tunnel run` commands must stay running for the site to be online.

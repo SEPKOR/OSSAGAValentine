@@ -29,9 +29,9 @@ class OrderController extends Controller
 
         // Calculate Price (Simplified from frontend logic)
         $prices = [
-            'cloud9' => 35000,
-            'floral' => 30000,
-            'petals' => 15000,
+            'cloud9' => 37000,
+            'floral' => 32000,
+            'petals' => 17000,
             'sugar'  => 10000,
         ];
         $totalPrice = $prices[$request->bundle] ?? 0;

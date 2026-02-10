@@ -115,14 +115,14 @@
                 type="radio"
                 name="bundle"
                 value="cloud9"
-                data-price="35000"
+                data-price="37000"
                 data-has-letter="true"
                 required
               />
               <span class="bundle-content">
                 <span class="bundle-title">1. Cloud Nine</span>
                 <span class="bundle-desc">Chocolate + Flower + Letter</span>
-                <span class="bundle-price">Rp 35.000</span>
+                <span class="bundle-price">Rp 37.000</span>
               </span>
             </label>
 
@@ -131,13 +131,13 @@
                 type="radio"
                 name="bundle"
                 value="floral"
-                data-price="30000"
+                data-price="32000"
                 data-has-letter="false"
               />
               <span class="bundle-content">
                 <span class="bundle-title">2. Floral Bliss</span>
                 <span class="bundle-desc">Chocolate + Flower</span>
-                <span class="bundle-price">Rp 30.000</span>
+                <span class="bundle-price">Rp 32.000</span>
               </span>
             </label>
 
@@ -146,13 +146,13 @@
                 type="radio"
                 name="bundle"
                 value="petals"
-                data-price="15000"
+                data-price="17000"
                 data-has-letter="true"
               />
               <span class="bundle-content">
                 <span class="bundle-title">3. Petals & Prose</span>
                 <span class="bundle-desc">Flower + Letter</span>
-                <span class="bundle-price">Rp 15.000</span>
+                <span class="bundle-price">Rp 17.000</span>
               </span>
             </label>
 
