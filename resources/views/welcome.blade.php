@@ -11,6 +11,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
   </head>
   <body>
     <div class="container">

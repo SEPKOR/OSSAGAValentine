@@ -140,32 +140,81 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // 3. Form Submission (Simulated)
+    // 3. Form Submission (Actual)
     orderForm.addEventListener("submit", function (e) {
         e.preventDefault();
 
         // Collect Data
         const formData = new FormData(orderForm);
-        const data = Object.fromEntries(formData.entries());
 
-        // Basic Validation
-        if (!data.bundle) {
+        // Add checkboxes manual handling if needed, though FormData usually handles them if checked
+        // Fix: Force isAnonymous to be 1 or 0 for Laravel boolean validation
+        const isAnon = document.getElementById("isAnonymous").checked;
+        formData.set("isAnonymous", isAnon ? "1" : "0");
+
+        // Basic Validation handled by HTML required attributes + backend validation
+
+        if (!formData.get("bundle")) {
             showModal("warning", "PERINGATAN!", "Pilih bundle dulu ya!");
             return;
         }
 
-        if (!data.paymentMethod) {
+        if (!formData.get("paymentMethod")) {
             showModal("warning", "PERINGATAN!", "Pilih cara bayar dulu!");
             return;
         }
 
-        // Just an alert for now
-        // Short success message as requested (max 8 words)
-        showModal(
-            "success",
-            "TERKIRIM!",
-            "Pesanan berhasil! Kirim screenshot ke admin.",
-        );
-        // orderForm.reset();
+        const submitBtn = document.querySelector(".submit-btn");
+        const originalBtnText = submitBtn.textContent;
+        submitBtn.disabled = true;
+        submitBtn.textContent = "MENGIRIM...";
+
+        fetch("/submit-order", {
+            method: "POST",
+            body: formData,
+            headers: {
+                "X-CSRF-TOKEN": document.querySelector(
+                    'meta[name="csrf-token"]',
+                ).content,
+                Accept: "application/json",
+            },
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    return response.json().then((err) => {
+                        throw err;
+                    });
+                }
+                return response.json();
+            })
+            .then((data) => {
+                showModal(
+                    "success",
+                    "TERKIRIM!",
+                    "Pesanan berhasil! Kirim screenshot ke admin.",
+                );
+                orderForm.reset();
+                // Reset preview
+                previewImg.src = "";
+                previewImg.classList.remove("visible");
+                placeholder.classList.remove("hidden");
+                // Reset payment selection
+                paymentOptions.forEach((opt) => opt.classList.remove("active"));
+                detailsBoxes.forEach((box) => box.classList.remove("active"));
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+                let msg = "Gagal mengirim pesanan. Coba lagi.";
+                if (error.message) msg = error.message;
+                if (error.errors) {
+                    // Laravel validation errors
+                    msg = Object.values(error.errors).flat().join("\n");
+                }
+                showModal("warning", "ERROR!", msg);
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalBtnText;
+            });
     });
 });
