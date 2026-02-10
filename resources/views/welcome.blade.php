@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SWEETALS - Sweet Petals</title>
+    <link rel="icon" href="{{ asset('img/logo.svg') }}" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -15,7 +16,6 @@
   </head>
   <body>
     <div class="container">
-      <!-- Header -->
       <!-- Header -->
       <header class="header-banner">
         <img src="{{ asset('img/banner.png') }}" alt="Sweetals Banner" class="banner-img" />
