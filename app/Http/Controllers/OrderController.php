@@ -71,12 +71,20 @@ class OrderController extends Controller
     }
 
     /**
+     * Display the specified order details.
+     */
+    public function show(Order $order)
+    {
+        return view('admin.show', compact('order'));
+    }
+
+    /**
      * Mark the specified order as completed.
      */
     public function complete(Order $order)
     {
         $order->update(['status' => 'completed']);
-        return redirect()->back()->with('success', 'Order marked as completed!');
+        return redirect()->route('admin.orders')->with('success', 'Order marked as completed!');
     }
 
     /**
@@ -90,6 +98,6 @@ class OrderController extends Controller
         }
 
         $order->delete();
-        return redirect()->back()->with('success', 'Order deleted successfully!');
+        return redirect()->route('admin.orders')->with('success', 'Order deleted successfully!');
     }
 }

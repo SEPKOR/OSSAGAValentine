@@ -10,8 +10,19 @@
 <body class="bg-gray-100 p-8">
     <div class="max-w-7xl mx-auto">
         <div class="flex justify-between items-center mb-6">
-            <h1 class="text-3xl font-bold text-gray-800">Order Dashboard</h1>
-            <span class="bg-pink-500 text-white px-4 py-2 rounded-lg font-mono">Total: {{ $orders->count() }}</span>
+            <div>
+                <h1 class="text-3xl font-bold text-gray-800">Order Dashboard</h1>
+                <p class="text-sm text-gray-600 mt-1">Welcome, {{ Auth::user()->name }}</p>
+            </div>
+            <div class="flex items-center gap-4">
+                <span class="bg-pink-500 text-white px-4 py-2 rounded-lg font-mono">Total: {{ $orders->count() }}</span>
+                <form action="{{ route('admin.logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg font-mono">
+                        Logout
+                    </button>
+                </form>
+            </div>
         </div>
 
         @if(session('success'))
@@ -39,7 +50,7 @@
                     <tbody class="bg-white divide-y divide-gray-200">
                         @foreach($orders as $order)
                         <tr class="hover:bg-gray-50">
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">#{{ $loop->iteration }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">#{{ $order->id }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                 {{ $order->created_at->format('d M H:i') }}
                             </td>
@@ -84,6 +95,16 @@
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                 <div class="flex space-x-2">
+                                    <!-- View Button -->
+                                    <a href="{{ route('admin.orders.show', $order) }}" 
+                                       class="text-blue-600 hover:text-blue-900" 
+                                       title="View Details">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                        </svg>
+                                    </a>
+
                                     <!-- Complete Button -->
                                     @if($order->status !== 'completed')
                                     <form action="{{ route('admin.orders.complete', $order) }}" method="POST" onsubmit="return confirm('Tandai pesanan ini selesai?');">

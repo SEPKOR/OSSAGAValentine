@@ -18,7 +18,7 @@
     <div class="container">
       <!-- Header -->
       <header class="header-banner">
-        <img src="{{ asset('img/banner.png') }}" alt="Sweetals Banner" class="banner-img" />
+        <img src="{{ asset('img/banner.webp') }}" alt="Sweetals Banner" class="banner-img" />
       </header>
 
       <form id="orderForm">
